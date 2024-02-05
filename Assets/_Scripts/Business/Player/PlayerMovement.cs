@@ -2,17 +2,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float _speed = 5f;
+    [SerializeField] SO_PlayerCharacters _playerCharacterSO;
     [SerializeField] Rigidbody _rb;
 
-    private void Update()
+    private void FixedUpdate()
     {
-        Move();
-    }
-
-    void Move()
-    {
+        //Movement
         var direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        _rb.velocity = direction * _speed;
+        _rb.velocity = direction * _playerCharacterSO.Speed;
     }
 }
