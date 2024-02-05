@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMouse : MonoBehaviour
+public class PlayerMouse : PersistentSingleton<PlayerMouse>
 {
     //This object follows the mouse.
     private void Update()
