@@ -5,17 +5,7 @@ using UnityEngine;
 public class Minigun : Weapon, IWeapon
 {
     [SerializeField] float warmUpTime;
-    float cooldownTime;
 
-
-    public override void Start()
-    {
-        base.Start();
-        maxAmmo = weaponSO.maxAmmo;
-        currentAmmo = weaponSO.currentAmmo;
-        cooldownTime = 1 / weaponSO.fireRate;
-        BulletCanvas.Instance.UpdateBulletCount(currentAmmo, maxAmmo);
-    }
 
     public void Shoot()
     {

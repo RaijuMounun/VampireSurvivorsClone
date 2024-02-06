@@ -16,6 +16,7 @@ public class Weapon : MonoBehaviour
         weaponM = WeaponManager.Instance;
         maxAmmo = weaponSO.maxAmmo;
         currentAmmo = weaponSO.currentAmmo;
+        BulletCanvas.Instance.UpdateBulletCount(currentAmmo, maxAmmo);
     }
 
     public virtual void Update() => transform.LookAt(weaponM.playerMouse);

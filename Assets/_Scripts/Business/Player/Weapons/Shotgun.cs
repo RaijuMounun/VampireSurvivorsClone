@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Shotgun : Weapon, IWeapon
@@ -8,13 +6,6 @@ public class Shotgun : Weapon, IWeapon
     public int bulletPerShot = 3;
     [SerializeField] int distributionDegree = 60;
 
-
-    public override void Start()
-    {
-        base.Start();
-        maxAmmo = weaponSO.maxAmmo;
-        currentAmmo = weaponSO.currentAmmo;
-    }
 
     public void Shoot()
     {
@@ -31,7 +22,7 @@ public class Shotgun : Weapon, IWeapon
             //Distribution of bullets
             bullet.transform.rotation = Quaternion.Euler(
                 transform.rotation.eulerAngles.x,
-                (transform.rotation.eulerAngles.y - (distributionDegree / 2)) + ((distributionDegree / (bulletPerShot - 1)) * i),
+                transform.rotation.eulerAngles.y - (distributionDegree / 2) + (distributionDegree / (bulletPerShot - 1) * i),
                 transform.rotation.eulerAngles.z);
 
             //Firing the bullet

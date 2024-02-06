@@ -1,15 +1,8 @@
-using System.Collections;
 using UnityEngine;
 
 public class Pistol : Weapon, IWeapon
 {
 
-    public override void Start()
-    {
-        base.Start();
-        maxAmmo = weaponSO.maxAmmo;
-        currentAmmo = weaponSO.currentAmmo;
-    }
     public void Shoot()
     {
         if (reloading) return;
