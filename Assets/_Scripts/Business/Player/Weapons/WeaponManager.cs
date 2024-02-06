@@ -11,6 +11,7 @@ public class WeaponManager : PersistentSingleton<WeaponManager>
     public Weapon activeWeapon;
     Coroutine returnBulletCoroutine;
     public Transform playerMouse;
+    public bool firing;
 
 
     private void Start() => Helpers.MakePool(bulletPrefab, playerBulletPoolSize, playerBulletParent, playerBulletPool);
@@ -25,7 +26,9 @@ public class WeaponManager : PersistentSingleton<WeaponManager>
     {
         if (!Input.GetButton("Fire1")) return;
         if (activeWeapon.TryGetComponent(out IWeapon semiWeapon)) semiWeapon.Shoot();
+        firing = true;
     }
+
     void Reload()
     {
         if (!Input.GetKeyDown(KeyCode.R)) return;

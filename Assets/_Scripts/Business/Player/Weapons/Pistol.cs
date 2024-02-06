@@ -14,19 +14,24 @@ public class Pistol : Weapon, IWeapon
     public void Shoot()
     {
         if (reloading) return;
-        if (weaponM.playerBulletPool.Count == 0) return;
         if (coolDown) return;
 
+        //pick bullet and increase counter
         var bullet = weaponM.playerBulletPool[weaponM.playerBulletPoolCounter];
         weaponM.playerBulletPoolCounter++;
         if (weaponM.playerBulletPoolCounter == weaponM.playerBulletPool.Count) weaponM.playerBulletPoolCounter = 0;
 
+        //set up and fire bullet
         bullet.SetActive(true);
         bullet.transform.SetPositionAndRotation(transform.position, transform.rotation);
         bullet.GetComponent<Rigidbody>().velocity = transform.forward * weaponSO.bulletSpeed;
+
+        //update ammo and bullet count text
         currentAmmo--;
         BulletCanvas.Instance.UpdateBulletCount(currentAmmo, maxAmmo);
         if (currentAmmo <= 0) StartCoroutine(Reload());
+
+        //cooldown
         StartCoroutine(CoolDown(1 / weaponSO.fireRate));
     }
     public IEnumerator Reload()
