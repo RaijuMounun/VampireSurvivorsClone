@@ -13,4 +13,10 @@ public class PlayerMouse : PersistentSingleton<PlayerMouse>
         mousePos.z = 25;
         return Helpers.Camera.ScreenToWorldPoint(mousePos);
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, 0.5f);
+    }
 }
