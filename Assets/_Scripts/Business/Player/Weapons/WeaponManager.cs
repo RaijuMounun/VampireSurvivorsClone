@@ -17,26 +17,20 @@ public class WeaponManager : PersistentSingleton<WeaponManager>
 
     private void Update()
     {
-        SemiShoot();
-        FullShoot();
+        Shoot();
         Reload();
     }
 
-    void SemiShoot()
+    void Shoot()
     {
         if (!Input.GetButtonDown("Fire1")) return;
-        if (activeWeapon.TryGetComponent(out ISemiAutoWeapon semiWeapon)) semiWeapon.Shoot();
-    }
-    void FullShoot()
-    {
-        if (!Input.GetButton("Fire1")) return;
-        if (activeWeapon.TryGetComponent(out IFullAutoWeapon autoWeapon)) autoWeapon.Shoot();
+        if (activeWeapon.TryGetComponent(out IWeapon semiWeapon)) semiWeapon.Shoot();
     }
     void Reload()
     {
         if (!Input.GetKeyDown(KeyCode.R)) return;
-        if (activeWeapon.TryGetComponent(out ISemiAutoWeapon semiWeapon)) StartCoroutine(semiWeapon.Reload());
-        if (activeWeapon.TryGetComponent(out IFullAutoWeapon autoWeapon)) StartCoroutine(autoWeapon.Reload());
+        if (activeWeapon.TryGetComponent(out IWeapon semiWeapon)) StartCoroutine(semiWeapon.Reload());
+        if (activeWeapon.TryGetComponent(out IWeapon autoWeapon)) StartCoroutine(autoWeapon.Reload());
     }
 
     public void ReturnBullet(GameObject bullet)
@@ -56,12 +50,7 @@ public class WeaponManager : PersistentSingleton<WeaponManager>
     }
 }
 
-interface ISemiAutoWeapon
-{
-    void Shoot();
-    IEnumerator Reload();
-}
-interface IFullAutoWeapon
+interface IWeapon
 {
     void Shoot();
     IEnumerator Reload();

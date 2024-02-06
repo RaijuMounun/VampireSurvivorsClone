@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Pistol : Weapon, ISemiAutoWeapon
+public class Pistol : Weapon, IWeapon
 {
     int maxAmmo, currentAmmo;
 

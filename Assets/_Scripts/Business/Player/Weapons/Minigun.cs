@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Minigun : Weapon, IFullAutoWeapon
+public class Minigun : Weapon, IWeapon
 {
     [SerializeField] float warmUpTime;
     [SerializeField] int maxAmmo, currentAmmo;

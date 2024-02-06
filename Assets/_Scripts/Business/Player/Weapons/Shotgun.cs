@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shotgun : Weapon, ISemiAutoWeapon
+public class Shotgun : Weapon, IWeapon
 {
     int maxAmmo, currentAmmo;
     [Range(2, 10)]
