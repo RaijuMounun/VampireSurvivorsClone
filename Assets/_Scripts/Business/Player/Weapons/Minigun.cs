@@ -1,9 +1,13 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Pistol : Weapon, ISemiAutoWeapon
+public class Minigun : Weapon, IFullAutoWeapon
 {
-    int maxAmmo, currentAmmo;
+    [SerializeField] float warmUpTime;
+    [SerializeField] int maxAmmo, currentAmmo;
+    Coroutine firingCoroutine;
+
 
     public override void Start()
     {
@@ -11,16 +15,30 @@ public class Pistol : Weapon, ISemiAutoWeapon
         maxAmmo = weaponSO.maxAmmo;
         currentAmmo = weaponSO.currentAmmo;
     }
+
+    public override void Update()
+    {
+        base.Update();
+        StopFiring();
+    }
+
     public void Shoot()
     {
-        if (reloading) return;
-        if (weaponM.playerBulletPool.Count == 0) return;
-        if (coolDown) return;
+        firingCoroutine = StartCoroutine(FireAfterDelay(warmUpTime));
+    }
 
+    IEnumerator FireAfterDelay(float delay)
+    {
+        if (reloading) yield break;
+        if (weaponM.playerBulletPool.Count == 0) yield break;
+        if (coolDown) yield break;
+
+        yield return Helpers.GetWait(delay);
+
+        print("Firing");
         var bullet = weaponM.playerBulletPool[weaponM.playerBulletPoolCounter];
         weaponM.playerBulletPoolCounter++;
         if (weaponM.playerBulletPoolCounter == weaponM.playerBulletPool.Count) weaponM.playerBulletPoolCounter = 0;
-        //return bullet
 
         bullet.SetActive(true);
         bullet.transform.SetPositionAndRotation(transform.position, transform.rotation);
@@ -28,8 +46,20 @@ public class Pistol : Weapon, ISemiAutoWeapon
         currentAmmo--;
         BulletCanvas.Instance.UpdateBulletCount(currentAmmo, maxAmmo);
         if (currentAmmo <= 0) StartCoroutine(Reload());
-        StartCoroutine(CoolDown(1 / weaponSO.fireRate));
+        coolDown = true;
+        yield return Helpers.GetWait(2f);
+        coolDown = false;
     }
+
+    void StopFiring()
+    {
+        if (!Input.GetButtonUp("Fire1")) return;
+        print("Stop firing");
+        StopAllCoroutines();
+        if (firingCoroutine != null) StopCoroutine(firingCoroutine);
+        firingCoroutine = null;
+    }
+
     public IEnumerator Reload()
     {
         reloading = true;
@@ -38,6 +68,4 @@ public class Pistol : Weapon, ISemiAutoWeapon
         BulletCanvas.Instance.UpdateBulletCount(currentAmmo, maxAmmo);
         reloading = false;
     }
-
-
 }

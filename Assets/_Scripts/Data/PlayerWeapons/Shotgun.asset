@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33c0b63bfa4411041a6849fae88fc22d, type: 3}
-  m_Name: Pistol
+  m_Name: Shotgun
   m_EditorClassIdentifier: 
   damage: 5
-  fireRate: 2
-  bulletSpeed: 20
-  bulletLifeTime: 4
-  maxAmmo: 20
-  currentAmmo: 20
-  reloadTime: 1
+  fireRate: 5
+  bulletSpeed: 17
+  bulletLifeTime: 0.1
+  maxAmmo: 2
+  currentAmmo: 2
+  reloadTime: 0.6

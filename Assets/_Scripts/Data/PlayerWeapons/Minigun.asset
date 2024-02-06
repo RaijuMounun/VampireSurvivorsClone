@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33c0b63bfa4411041a6849fae88fc22d, type: 3}
-  m_Name: Pistol
+  m_Name: Minigun
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 10
   fireRate: 2
-  bulletSpeed: 20
+  bulletSpeed: 35
   bulletLifeTime: 4
-  maxAmmo: 20
-  currentAmmo: 20
-  reloadTime: 1
+  maxAmmo: 100
+  currentAmmo: 100
+  reloadTime: 3

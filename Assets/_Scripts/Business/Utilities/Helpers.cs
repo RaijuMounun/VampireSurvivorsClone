@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public static class Helpers
@@ -22,6 +23,7 @@ public static class Helpers
     private static readonly Dictionary<float, WaitForSeconds> WaitDictionary = new Dictionary<float, WaitForSeconds>();
     public static WaitForSeconds GetWait(float time)
     {
+        Debug.Log("GetWait " + time);
         if (WaitDictionary.TryGetValue(time, out var wait)) return wait;
 
         WaitDictionary[time] = new WaitForSeconds(time);

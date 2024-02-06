@@ -3,27 +3,26 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public Transform playerMouse;
     public SO_PlayerWeapons weaponSO;
     protected WeaponManager weaponM;
     protected bool reloading;
-    private void Start()
-    {
-        playerMouse = PlayerMouse.Instance.transform;
-        weaponM = WeaponManager.Instance;
-    }
-    private void Update() => transform.LookAt(playerMouse);
+    protected bool coolDown;
+
+
+    public virtual void Start() => weaponM = WeaponManager.Instance;
+    public virtual void Update() => transform.LookAt(weaponM.playerMouse);
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, transform.forward * 10);
     }
+
+    public IEnumerator CoolDown(float time)
+    {
+        coolDown = true;
+        yield return Helpers.GetWait(time);
+        coolDown = false;
+        print(time);
+    }
 }
 
-interface IWeapon
-{
-    void Shoot();
-    void ReturnBullet(GameObject bullet);
-    void ReturnBullet(GameObject bullet, float time);
-    IEnumerator Reload();
-}
