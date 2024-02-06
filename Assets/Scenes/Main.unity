@@ -615,6 +615,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 434451836334965207, guid: 1e1c572d6a6500e4ca091402604e8834, type: 3}
   m_PrefabInstance: {fileID: 2575206427408191675}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &680217812 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 203064905277629652, guid: 1e1c572d6a6500e4ca091402604e8834, type: 3}
+  m_PrefabInstance: {fileID: 2575206427408191675}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93f2df8b5f26deb4fa88f6669b206dd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,7 +896,7 @@ MonoBehaviour:
   playerBulletParent: {fileID: 2029048347}
   playerBulletPoolCounter: 0
   playerBulletPoolSize: 100
-  activeWeapon: {fileID: 1930321380}
+  activeWeapon: {fileID: 680217812}
   playerMouse: {fileID: 1426274031}
   firing: 0
 --- !u!1 &1364412501
@@ -1297,17 +1308,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8194343998794796170, guid: 0e97023fb54c1604a88b3d7dbe427f7f, type: 3}
   m_PrefabInstance: {fileID: 6677685021895514278}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1930321380 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3042700685615804711, guid: 0e97023fb54c1604a88b3d7dbe427f7f, type: 3}
-  m_PrefabInstance: {fileID: 6677685021895514278}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0d6f065f1ec48b4cb06083fc41aa473, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1954740064
 GameObject:
   m_ObjectHideFlags: 0
@@ -1640,7 +1640,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7848588199478371153, guid: 1e1c572d6a6500e4ca091402604e8834, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1661,7 +1661,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2877902418386451420, guid: 0e97023fb54c1604a88b3d7dbe427f7f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8194343998794796170, guid: 0e97023fb54c1604a88b3d7dbe427f7f, type: 3}
       propertyPath: m_LocalPosition.x

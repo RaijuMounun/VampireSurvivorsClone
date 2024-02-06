@@ -3,7 +3,6 @@ using UnityEngine;
 public class Minigun : Weapon, IWeapon
 {
 
-
     public void Shoot()
     {
         if (reloading) return;
