@@ -615,17 +615,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 434451836334965207, guid: 1e1c572d6a6500e4ca091402604e8834, type: 3}
   m_PrefabInstance: {fileID: 2575206427408191675}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &680217812 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 203064905277629652, guid: 1e1c572d6a6500e4ca091402604e8834, type: 3}
-  m_PrefabInstance: {fileID: 2575206427408191675}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93f2df8b5f26deb4fa88f6669b206dd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -896,7 +885,7 @@ MonoBehaviour:
   playerBulletParent: {fileID: 2029048347}
   playerBulletPoolCounter: 0
   playerBulletPoolSize: 100
-  activeWeapon: {fileID: 680217812}
+  activeWeapon: {fileID: 1580712491}
   playerMouse: {fileID: 1426274031}
 --- !u!1 &1364412501
 GameObject:
@@ -1136,6 +1125,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6412697508983271327, guid: cb038b67394d3f24588079a6b57c1306, type: 3}
   m_PrefabInstance: {fileID: 2145647783}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1580712491 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1018271951099215622, guid: cb038b67394d3f24588079a6b57c1306, type: 3}
+  m_PrefabInstance: {fileID: 2145647783}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bde23ebb08130b4184bc9878f19000f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1650593864
 GameObject:
   m_ObjectHideFlags: 0
@@ -1522,7 +1522,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 779899726356033755, guid: cb038b67394d3f24588079a6b57c1306, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1018271951099215622, guid: cb038b67394d3f24588079a6b57c1306, type: 3}
       propertyPath: pistolSO
@@ -1632,6 +1632,10 @@ PrefabInstance:
     - target: {fileID: 7848588199478371153, guid: 1e1c572d6a6500e4ca091402604e8834, type: 3}
       propertyPath: m_Name
       value: Minigun
+      objectReference: {fileID: 0}
+    - target: {fileID: 7848588199478371153, guid: 1e1c572d6a6500e4ca091402604e8834, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

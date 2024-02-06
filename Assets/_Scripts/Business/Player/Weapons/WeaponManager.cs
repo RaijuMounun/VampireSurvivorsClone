@@ -23,7 +23,7 @@ public class WeaponManager : PersistentSingleton<WeaponManager>
 
     void Shoot()
     {
-        if (!Input.GetButtonDown("Fire1")) return;
+        if (!Input.GetButton("Fire1")) return;
         if (activeWeapon.TryGetComponent(out IWeapon semiWeapon)) semiWeapon.Shoot();
     }
     void Reload()
