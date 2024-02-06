@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class WeaponManager : PersistentSingleton<WeaponManager>
 {
+    [HideInInspector] public Weapon activeWeapon;
+    public Transform playerMouse;
+    public List<Weapon> weapons = new List<Weapon>();
+
+    [Space(10), Header("Bullet Pool")]
     public GameObject bulletPrefab;
     public List<GameObject> playerBulletPool = new List<GameObject>();
     public Transform playerBulletParent;
     public int playerBulletPoolCounter = 0, playerBulletPoolSize = 30;
-    public Weapon activeWeapon;
-    Coroutine returnBulletCoroutine;
-    public Transform playerMouse;
-    public bool firing;
+
 
 
     private void Start() => Helpers.MakePool(bulletPrefab, playerBulletPoolSize, playerBulletParent, playerBulletPool);
@@ -26,7 +28,6 @@ public class WeaponManager : PersistentSingleton<WeaponManager>
     {
         if (!Input.GetButton("Fire1")) return;
         if (activeWeapon.TryGetComponent(out IWeapon weapon)) weapon.Shoot();
-        firing = true;
     }
 
     void Reload()
@@ -42,6 +43,7 @@ public class WeaponManager : PersistentSingleton<WeaponManager>
         if (weapon.currentAmmo <= 0) StartCoroutine(weapon.Reload());
     }
 }
+
 
 interface IWeapon
 {
