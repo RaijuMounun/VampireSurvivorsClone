@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   damage: 5
-  fireRate: 5
+  fireRate: 10
   bulletSpeed: 17
   bulletLifeTime: 0.1
   maxAmmo: 2

@@ -22,7 +22,6 @@ public class Weapon : MonoBehaviour
         coolDown = true;
         yield return Helpers.GetWait(time);
         coolDown = false;
-        print(time);
     }
 }
 

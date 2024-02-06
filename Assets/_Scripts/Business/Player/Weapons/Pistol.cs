@@ -20,7 +20,6 @@ public class Pistol : Weapon, ISemiAutoWeapon
         var bullet = weaponM.playerBulletPool[weaponM.playerBulletPoolCounter];
         weaponM.playerBulletPoolCounter++;
         if (weaponM.playerBulletPoolCounter == weaponM.playerBulletPool.Count) weaponM.playerBulletPoolCounter = 0;
-        //return bullet
 
         bullet.SetActive(true);
         bullet.transform.SetPositionAndRotation(transform.position, transform.rotation);
