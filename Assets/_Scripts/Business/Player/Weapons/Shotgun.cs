@@ -22,6 +22,8 @@ public class Shotgun : Weapon, IWeapon
         if (reloading) return;
         if (weaponM.playerBulletPool.Count == 0) return;
         if (coolDown) return;
+
+
         for (int i = 0; i < bulletPerShot; i++)
         {
 
