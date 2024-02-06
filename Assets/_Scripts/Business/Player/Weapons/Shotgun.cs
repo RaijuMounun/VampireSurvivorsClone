@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Shotgun : Weapon, IWeapon
 {
-    int maxAmmo, currentAmmo;
     [Range(2, 10)]
     public int bulletPerShot = 3;
     [SerializeField] int distributionDegree = 60;
@@ -20,7 +19,6 @@ public class Shotgun : Weapon, IWeapon
     public void Shoot()
     {
         if (reloading) return;
-        if (weaponM.playerBulletPool.Count == 0) return;
         if (coolDown) return;
 
 
@@ -45,18 +43,9 @@ public class Shotgun : Weapon, IWeapon
             if (weaponM.playerBulletPoolCounter == weaponM.playerBulletPool.Count) weaponM.playerBulletPoolCounter = 0;
         }
 
-        currentAmmo--;
-        BulletCanvas.Instance.UpdateBulletCount(currentAmmo, maxAmmo);
-        if (currentAmmo <= 0) StartCoroutine(Reload());
-        StartCoroutine(CoolDown(1 / weaponSO.fireRate));
-    }
+        weaponM.UpdateAmmoBulletText(this);
 
-    public IEnumerator Reload()
-    {
-        reloading = true;
-        yield return Helpers.GetWait(weaponSO.reloadTime);
-        currentAmmo = maxAmmo;
-        BulletCanvas.Instance.UpdateBulletCount(currentAmmo, maxAmmo);
-        reloading = false;
+        //Cooldown
+        StartCoroutine(CoolDown(1 / weaponSO.fireRate));
     }
 }

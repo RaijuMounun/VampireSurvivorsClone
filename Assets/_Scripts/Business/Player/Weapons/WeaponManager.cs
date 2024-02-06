@@ -25,31 +25,21 @@ public class WeaponManager : PersistentSingleton<WeaponManager>
     void Shoot()
     {
         if (!Input.GetButton("Fire1")) return;
-        if (activeWeapon.TryGetComponent(out IWeapon semiWeapon)) semiWeapon.Shoot();
+        if (activeWeapon.TryGetComponent(out IWeapon weapon)) weapon.Shoot();
         firing = true;
     }
 
     void Reload()
     {
         if (!Input.GetKeyDown(KeyCode.R)) return;
-        if (activeWeapon.TryGetComponent(out IWeapon semiWeapon)) StartCoroutine(semiWeapon.Reload());
-        if (activeWeapon.TryGetComponent(out IWeapon autoWeapon)) StartCoroutine(autoWeapon.Reload());
+        if (activeWeapon.TryGetComponent(out IWeapon weapon)) StartCoroutine(weapon.Reload());
     }
 
-    public void ReturnBullet(GameObject bullet)
+    public void UpdateAmmoBulletText(Weapon weapon)
     {
-        StopCoroutine(returnBulletCoroutine);
-        bullet.SetActive(false);
-        playerBulletPool.Add(bullet);
-    }
-    public void ReturnBullet(GameObject bullet, float delay)
-    {
-        returnBulletCoroutine = StartCoroutine(ReturnBulletWithDelay(bullet, delay));
-    }
-    private IEnumerator ReturnBulletWithDelay(GameObject bullet, float delay)
-    {
-        yield return Helpers.GetWait(delay);
-        ReturnBullet(bullet);
+        weapon.currentAmmo--;
+        BulletCanvas.Instance.UpdateBulletCount(weapon.currentAmmo, weapon.maxAmmo);
+        if (weapon.currentAmmo <= 0) StartCoroutine(weapon.Reload());
     }
 }
 
