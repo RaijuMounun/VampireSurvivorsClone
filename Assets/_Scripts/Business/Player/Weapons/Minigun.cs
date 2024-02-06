@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Minigun : Weapon, IWeapon
 {
-    [SerializeField] float warmUpTime;
 
 
     public void Shoot()
