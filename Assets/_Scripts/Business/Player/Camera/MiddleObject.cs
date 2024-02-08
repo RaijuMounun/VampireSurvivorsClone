@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class MiddleObject : MonoBehaviour
-{
+{//todo playermanagerdan aktif playerı al
     [SerializeField] Transform _player, _mouseObj;
     [SerializeField, Tooltip("Lower = Closer to the player, vice versa"), Range(0f, 1f)]
     float _speed = 0.3f;

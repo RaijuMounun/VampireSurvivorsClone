@@ -5,8 +5,8 @@ public class Minigun : Weapon, IWeapon
 
     public void Shoot()
     {
-        if (reloading) return;
-        if (coolDown) return;
+        if (isReloading) return;
+        if (isInCooldown) return;
 
         //pick bullet and increase counter
         var bullet = weaponM.playerBulletPool[weaponM.playerBulletPoolCounter];

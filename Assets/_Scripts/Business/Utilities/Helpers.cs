@@ -1,11 +1,10 @@
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using UnityEngine;
 
 public static class Helpers
 {
     #region Camera
-    //Camera.main pahalı olduğu için bir örneğini tutuyoruz.
+    //Because of the Camera.main is an expensive operation, we are caching the camera.
     private static Camera _camera;
     public static Camera Camera
     {
@@ -19,7 +18,7 @@ public static class Helpers
 
 
     #region WaitForSeconds
-    //Her waitforseconds kullanımında garbage collector'ın toplayacağı çöp artar, burada dictionary kullanarak waitforseconds'ları tekrar tekrar kullanıyoruz.
+    //Every use of WaitForSeconds creates a new garbage for garbage collector to collect, so we are caching the WaitForSeconds.
     private static readonly Dictionary<float, WaitForSeconds> WaitDictionary = new Dictionary<float, WaitForSeconds>();
     public static WaitForSeconds GetWait(float time)
     {
@@ -30,7 +29,7 @@ public static class Helpers
     }
     #endregion
 
-
+    //Object pooler method
     public static void MakePool(GameObject prefab, int poolSize, Transform parent, List<GameObject> poolList)
     {
         for (int i = 0; i < poolSize; i++)

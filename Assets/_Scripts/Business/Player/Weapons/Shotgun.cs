@@ -3,17 +3,17 @@ using UnityEngine;
 public class Shotgun : Weapon, IWeapon
 {
     [Range(2, 10)]
-    public int bulletPerShot = 3;
-    [SerializeField] int distributionDegree = 60;
+    [SerializeField] int _bulletPerShot = 3;
+    [SerializeField] int _distributionDegree = 60;
 
 
     public void Shoot()
     {
-        if (reloading) return;
-        if (coolDown) return;
+        if (isReloading) return;
+        if (isInCooldown) return;
 
 
-        for (int i = 0; i < bulletPerShot; i++)
+        for (int i = 0; i < _bulletPerShot; i++)
         {
 
             var bullet = weaponM.playerBulletPool[weaponM.playerBulletPoolCounter];
@@ -22,10 +22,11 @@ public class Shotgun : Weapon, IWeapon
             //Distribution of bullets
             bullet.transform.rotation = Quaternion.Euler(
                 transform.rotation.eulerAngles.x,
-                transform.rotation.eulerAngles.y - (distributionDegree / 2) + (distributionDegree / (bulletPerShot - 1) * i),
+                transform.rotation.eulerAngles.y - (_distributionDegree / 2) + (_distributionDegree / (_bulletPerShot - 1) * i),
                 transform.rotation.eulerAngles.z);
 
             //Firing the bullet
+            bullet.transform.SetParent(null);
             bullet.SetActive(true);
             bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * weaponSO.bulletSpeed;
 

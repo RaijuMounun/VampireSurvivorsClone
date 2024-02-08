@@ -6,8 +6,8 @@ public class Weapon : MonoBehaviour
     public SO_PlayerWeapons weaponSO;
     protected WeaponTypeEnum weaponType;
     protected WeaponManager weaponM;
-    protected bool reloading;
-    protected bool coolDown;
+    protected bool isReloading;
+    protected bool isInCooldown;
     public int maxAmmo, currentAmmo;
 
 
@@ -23,18 +23,18 @@ public class Weapon : MonoBehaviour
 
     public IEnumerator CoolDown(float time)
     {
-        coolDown = true;
+        isInCooldown = true;
         yield return Helpers.GetWait(time);
-        coolDown = false;
+        isInCooldown = false;
     }
 
     public IEnumerator Reload()
     {
-        reloading = true;
+        isReloading = true;
         yield return Helpers.GetWait(weaponSO.reloadTime);
         currentAmmo = maxAmmo;
         BulletCanvas.Instance.UpdateBulletCount(currentAmmo, maxAmmo);
-        reloading = false;
+        isReloading = false;
     }
 }
 

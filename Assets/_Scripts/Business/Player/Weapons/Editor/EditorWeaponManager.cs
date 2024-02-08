@@ -1,43 +1,30 @@
-using System.Reflection.Emit;
 using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(WeaponManager))]
 public class EditorWeaponManager : Editor
 {
-
+    WeaponManager _weaponManager;
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        WeaponManager weaponManager = (WeaponManager)target;
-        weaponManager.activeWeapon = (Weapon)EditorGUILayout.ObjectField("Active Weapon", weaponManager.activeWeapon, typeof(Weapon), true);
+        _weaponManager = (WeaponManager)target;
+        _weaponManager.activeWeapon = (Weapon)EditorGUILayout.ObjectField("Active Weapon", _weaponManager.activeWeapon, typeof(Weapon), true);
 
         GUILayout.Space(30);
         GUILayout.Label("Select Weapon");
 
         // Add three buttons
-        if (GUILayout.Button("Pistol"))
-        {
-            weaponManager.activeWeapon = weaponManager.weapons[0];
-            weaponManager.weapons[0].gameObject.SetActive(true);
-            weaponManager.weapons[1].gameObject.SetActive(false);
-            weaponManager.weapons[2].gameObject.SetActive(false);
-        }
+        if (GUILayout.Button("Pistol")) SetActiveWeapon(0);
+        if (GUILayout.Button("Minigun")) SetActiveWeapon(1);
+        if (GUILayout.Button("Shotgun")) SetActiveWeapon(2);
+    }
+    void SetActiveWeapon(int index)
+    {
+        for (int i = 0; i < _weaponManager.weapons.Count; i++)
+            _weaponManager.weapons[i].gameObject.SetActive(false);
 
-        if (GUILayout.Button("Minigun"))
-        {
-            weaponManager.activeWeapon = weaponManager.weapons[1];
-            weaponManager.weapons[0].gameObject.SetActive(false);
-            weaponManager.weapons[1].gameObject.SetActive(true);
-            weaponManager.weapons[2].gameObject.SetActive(false);
-        }
-
-        if (GUILayout.Button("Shotgun"))
-        {
-            weaponManager.activeWeapon = weaponManager.weapons[2];
-            weaponManager.weapons[0].gameObject.SetActive(false);
-            weaponManager.weapons[1].gameObject.SetActive(false);
-            weaponManager.weapons[2].gameObject.SetActive(true);
-        }
+        _weaponManager.activeWeapon = _weaponManager.weapons[index];
+        _weaponManager.weapons[index].gameObject.SetActive(true);
     }
 }

@@ -6,7 +6,7 @@ public class WeaponManager : PersistentSingleton<WeaponManager>
 {
     [HideInInspector] public Weapon activeWeapon;
     public Transform playerMouse;
-    public List<Weapon> weapons = new List<Weapon>();
+    public List<Weapon> weapons = new List<Weapon>(); //todo Playermanager yapıp aktif playerı alıp ondan al silahları
 
     [Space(10), Header("Bullet Pool")]
     public GameObject bulletPrefab;

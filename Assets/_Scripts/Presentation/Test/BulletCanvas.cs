@@ -1,5 +1,3 @@
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class BulletCanvas : PersistentSingleton<BulletCanvas>
