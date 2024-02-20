@@ -1,12 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponManager : PersistentSingleton<WeaponManager>
 {
-    [HideInInspector] public Weapon activeWeapon;
+    /*[HideInInspector]*/
+    public IWeapon activeWeapon;
+    public Player player;
     public Transform playerMouse;
-    public List<Weapon> weapons = new List<Weapon>(); //todo Playermanager yapıp aktif playerı alıp ondan al silahları
+    public List<Weapon> weapons = new List<Weapon>();
 
     [Space(10), Header("Bullet Pool")]
     public GameObject bulletPrefab;
@@ -16,37 +17,13 @@ public class WeaponManager : PersistentSingleton<WeaponManager>
 
 
 
-    private void Start() => Helpers.MakePool(bulletPrefab, playerBulletPoolSize, playerBulletParent, playerBulletPool);
-
-    private void Update()
+    private void Start()
     {
-        Shoot();
-        Reload();
-    }
-
-    void Shoot()
-    {
-        if (!Input.GetButton("Fire1")) return;
-        if (activeWeapon.TryGetComponent(out IWeapon weapon)) weapon.Shoot();
-    }
-
-    void Reload()
-    {
-        if (!Input.GetKeyDown(KeyCode.R)) return;
-        if (activeWeapon.TryGetComponent(out IWeapon weapon)) StartCoroutine(weapon.Reload());
-    }
-
-    public void UpdateAmmoBulletText(Weapon weapon)
-    {
-        weapon.currentAmmo--;
-        BulletCanvas.Instance.UpdateBulletCount(weapon.currentAmmo, weapon.maxAmmo);
-        if (weapon.currentAmmo <= 0) StartCoroutine(weapon.Reload());
+        Helpers.MakePool(bulletPrefab, playerBulletPoolSize, playerBulletParent, playerBulletPool);
+        player = PlayerManager.Instance.activeChar;
+        activeWeapon = weapons[0].weaponSO;
     }
 }
 
 
-interface IWeapon
-{
-    void Shoot();
-    IEnumerator Reload();
-}
+

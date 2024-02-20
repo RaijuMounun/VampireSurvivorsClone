@@ -9,13 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33c0b63bfa4411041a6849fae88fc22d, type: 3}
+  m_Script: {fileID: 11500000, guid: b0d6f065f1ec48b4cb06083fc41aa473, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
-  damage: 5
-  fireRate: 10
-  bulletSpeed: 17
-  bulletLifeTime: 0.1
+  damage: 3
+  fireRate: 1
+  bulletSpeed: 10
+  bulletLifeTime: 10
   maxAmmo: 2
-  currentAmmo: 2
-  reloadTime: 0.6
+  currentAmmo: 1
+  reloadTime: 1
+  isReloading: 0
+  isInCooldown: 0
+  canFire: 1
+  weaponM: {fileID: 0}
+  weapon: {fileID: 0}
+  _bulletPerShot: 8
+  _distributionDegree: 40

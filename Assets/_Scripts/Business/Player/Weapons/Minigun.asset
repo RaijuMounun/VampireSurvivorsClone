@@ -9,13 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33c0b63bfa4411041a6849fae88fc22d, type: 3}
+  m_Script: {fileID: 11500000, guid: 93f2df8b5f26deb4fa88f6669b206dd8, type: 3}
   m_Name: Minigun
   m_EditorClassIdentifier: 
-  damage: 10
-  fireRate: 10
-  bulletSpeed: 35
-  bulletLifeTime: 4
+  damage: 5
+  fireRate: 5
+  bulletSpeed: 10
+  bulletLifeTime: 10
   maxAmmo: 100
-  currentAmmo: 100
-  reloadTime: 3
+  currentAmmo: 83
+  reloadTime: 2
+  isReloading: 0
+  isInCooldown: 0
+  canFire: 1
+  weaponM: {fileID: 0}
+  weapon: {fileID: 0}

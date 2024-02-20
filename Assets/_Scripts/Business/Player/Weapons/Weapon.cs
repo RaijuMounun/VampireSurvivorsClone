@@ -3,45 +3,45 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    WeaponManager weaponM;
     public SO_PlayerWeapons weaponSO;
-    protected WeaponTypeEnum weaponType;
-    protected WeaponManager weaponM;
-    protected bool isReloading;
-    protected bool isInCooldown;
-    public int maxAmmo, currentAmmo;
 
 
-    public virtual void Start()
+    private void Start()
     {
         weaponM = WeaponManager.Instance;
-        maxAmmo = weaponSO.maxAmmo;
-        currentAmmo = weaponSO.currentAmmo;
-        BulletCanvas.Instance.UpdateBulletCount(currentAmmo, maxAmmo);
+        BulletCanvas.Instance.UpdateBulletCount(weaponSO.currentAmmo, weaponSO.maxAmmo);
+        weaponSO.weapon = this;
+        weaponSO.weaponM = weaponM;
+        print(weaponSO.name);
+        weaponSO.canFire = true;
+        transform.parent = weaponM.player.transform;
     }
 
-    public virtual void Update() => transform.LookAt(weaponM.playerMouse);
-
-    public IEnumerator CoolDown(float time)
+    public virtual void Update()
     {
-        isInCooldown = true;
-        yield return Helpers.GetWait(time);
-        isInCooldown = false;
+        transform.LookAt(weaponM.playerMouse);
+        if (Input.GetButton("Fire1")) weaponSO.Shoot();
+        if (Input.GetKeyDown(KeyCode.R)) StartCoroutine(weaponSO.Reload());
     }
 
-    public IEnumerator Reload()
+
+    public void UpdateAmmoAndBulletText(SO_PlayerWeapons weapon)
     {
-        isReloading = true;
-        yield return Helpers.GetWait(weaponSO.reloadTime);
-        currentAmmo = maxAmmo;
-        BulletCanvas.Instance.UpdateBulletCount(currentAmmo, maxAmmo);
-        isReloading = false;
+        weapon.currentAmmo--;
+        BulletCanvas.Instance.UpdateBulletCount(weapon.currentAmmo, weapon.maxAmmo);
+        if (weapon.currentAmmo <= 0) StartCoroutine(weapon.Reload());
+    }
+
+    public void GetCooldown(float time)
+    {
+        StartCoroutine(weaponSO.CoolDown(time));
     }
 }
 
-public enum WeaponTypeEnum
+public interface IWeapon
 {
-    Pistol,
-    Shotgun,
-    Minigun
+    void Shoot();
+    IEnumerator Reload();
 }
 

@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class Pistol : Weapon, IWeapon
+[CreateAssetMenu(fileName = "Scriptable Objects", menuName = "New Pistol")]
+public class Pistol : SO_PlayerWeapons
 {
 
-    public void Shoot()
+
+    public override void Shoot()
     {
-        if (isReloading) return;
-        if (isInCooldown) return;
+        if (!canFire) return;
 
         //pick bullet and increase counter
         var bullet = weaponM.playerBulletPool[weaponM.playerBulletPoolCounter];
@@ -14,14 +15,15 @@ public class Pistol : Weapon, IWeapon
         if (weaponM.playerBulletPoolCounter == weaponM.playerBulletPool.Count) weaponM.playerBulletPoolCounter = 0;
 
         //set up and fire bullet
+        bullet.transform.SetParent(null);
         bullet.SetActive(true);
-        bullet.transform.SetPositionAndRotation(transform.position, transform.rotation);
-        bullet.GetComponent<Rigidbody>().velocity = transform.forward * weaponSO.bulletSpeed;
+        bullet.transform.SetPositionAndRotation(weapon.transform.position, weapon.transform.rotation);
+        bullet.GetComponent<Rigidbody>().velocity = weapon.transform.forward * bulletSpeed;
 
-        weaponM.UpdateAmmoBulletText(this);
+        weapon.UpdateAmmoAndBulletText(this);
 
         //cooldown
-        StartCoroutine(CoolDown(1 / weaponSO.fireRate));
+        weapon.GetCooldown(1 / fireRate);
     }
 
 }

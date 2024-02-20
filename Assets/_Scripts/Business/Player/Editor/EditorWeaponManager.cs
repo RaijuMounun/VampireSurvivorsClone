@@ -9,7 +9,7 @@ public class EditorWeaponManager : Editor
     {
         base.OnInspectorGUI();
         _weaponManager = (WeaponManager)target;
-        _weaponManager.activeWeapon = (Weapon)EditorGUILayout.ObjectField("Active Weapon", _weaponManager.activeWeapon, typeof(Weapon), true);
+        //_weaponManager.activeWeapon = (IWeapon)EditorGUILayout.ObjectField("Active Weapon", _weaponManager.activeWeapon, typeof(IWeapon), true);
 
         GUILayout.Space(30);
         GUILayout.Label("Select Weapon");
@@ -24,7 +24,7 @@ public class EditorWeaponManager : Editor
         for (int i = 0; i < _weaponManager.weapons.Count; i++)
             _weaponManager.weapons[i].gameObject.SetActive(false);
 
-        _weaponManager.activeWeapon = _weaponManager.weapons[index];
+        //_weaponManager.activeWeapon = _weaponManager.weapons[index];
         _weaponManager.weapons[index].gameObject.SetActive(true);
     }
 }
