@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Minigun
   m_EditorClassIdentifier: 
   damage: 5
-  fireRate: 5
+  fireRate: 10
   bulletSpeed: 10
   bulletLifeTime: 10
   maxAmmo: 100
-  currentAmmo: 83
+  currentAmmo: 24
   reloadTime: 2
   isReloading: 0
   isInCooldown: 0

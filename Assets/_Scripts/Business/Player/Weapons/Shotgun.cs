@@ -10,6 +10,7 @@ public class Shotgun : SO_PlayerWeapons
     public override void Shoot()
     {
         if (!canFire) return;
+        if (isReloading) return;
 
 
         for (int i = 0; i < _bulletPerShot; i++)

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   damage: 3
-  fireRate: 1
+  fireRate: 5
   bulletSpeed: 10
   bulletLifeTime: 10
   maxAmmo: 2
-  currentAmmo: 1
+  currentAmmo: 2
   reloadTime: 1
-  isReloading: 0
+  isReloading: 1
   isInCooldown: 0
   canFire: 1
   weaponM: {fileID: 0}

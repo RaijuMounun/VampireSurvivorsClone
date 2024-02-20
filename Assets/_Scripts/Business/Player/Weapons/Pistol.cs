@@ -8,6 +8,7 @@ public class Pistol : SO_PlayerWeapons
     public override void Shoot()
     {
         if (!canFire) return;
+        if (isReloading) return;
 
         //pick bullet and increase counter
         var bullet = weaponM.playerBulletPool[weaponM.playerBulletPoolCounter];

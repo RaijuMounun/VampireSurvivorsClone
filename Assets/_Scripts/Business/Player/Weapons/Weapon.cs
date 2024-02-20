@@ -10,19 +10,18 @@ public class Weapon : MonoBehaviour
     private void Start()
     {
         weaponM = WeaponManager.Instance;
-        BulletCanvas.Instance.UpdateBulletCount(weaponSO.currentAmmo, weaponSO.maxAmmo);
         weaponSO.weapon = this;
         weaponSO.weaponM = weaponM;
-        print(weaponSO.name);
         weaponSO.canFire = true;
+        weaponSO.isReloading = false;
         transform.parent = weaponM.player.transform;
+        BulletCanvas.Instance.UpdateBulletCount(weaponSO.currentAmmo, weaponSO.maxAmmo);
     }
 
-    public virtual void Update()
+    public void Reload()
     {
-        transform.LookAt(weaponM.playerMouse);
-        if (Input.GetButton("Fire1")) weaponSO.Shoot();
-        if (Input.GetKeyDown(KeyCode.R)) StartCoroutine(weaponSO.Reload());
+        if (!Input.GetKeyDown(KeyCode.R)) return;
+        StartCoroutine(weaponSO.Reload());
     }
 
 

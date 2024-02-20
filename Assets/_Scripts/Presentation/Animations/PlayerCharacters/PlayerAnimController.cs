@@ -6,13 +6,12 @@ public class PlayerAnimController : MonoBehaviour
     [SerializeField] PlayerMovement playerMovement;
 
     [SerializeField] Animator animator;
-    string forwardTrigger = "TForward", backwardsTrigger = "TBackwards";
+    readonly string forwardTrigger = "TForward", backwardsTrigger = "TBackwards";
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        playerMovement = GetComponent<PlayerMovement>();
-        if (playerMovement != null) playerMovement.OnPlayerMove += OnPlayerMove; //Subscribe
+        if (TryGetComponent<PlayerMovement>(out playerMovement)) playerMovement.OnPlayerMove += OnPlayerMove; //Subscribe
     }
 
     void OnPlayerMove(float directionX)

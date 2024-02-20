@@ -30,11 +30,11 @@ public abstract class SO_PlayerWeapons : ScriptableObject, IWeapon
 
     public IEnumerator Reload()
     {
-        canFire = false;
+        isReloading = true;
         yield return Helpers.GetWait(reloadTime);
         currentAmmo = maxAmmo;
         BulletCanvas.Instance.UpdateBulletCount(currentAmmo, maxAmmo);
-        canFire = true;
+        isReloading = false;
     }
 
 }
