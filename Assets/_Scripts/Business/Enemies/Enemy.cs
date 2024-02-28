@@ -19,7 +19,7 @@ public abstract class Enemy : MonoBehaviour
     //Disable collider, spawn exp orb, play death animation
     public virtual void Die()
     {
-        //todo animator.SetTrigger("Die");
+        animator.SetTrigger("isDead");
         _col.enabled = false;
         var expOrb = Instantiate(
             expOrbPrefab,
