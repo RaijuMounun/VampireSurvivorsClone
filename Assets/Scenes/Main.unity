@@ -2763,7 +2763,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7732687816575896617, guid: c26d714cfb0376d4ea5fa17eeb4bdb91, type: 3}
       propertyPath: moveSpeed
-      value: 20
+      value: 10.2
       objectReference: {fileID: 0}
     - target: {fileID: 7732687816575896617, guid: c26d714cfb0376d4ea5fa17eeb4bdb91, type: 3}
       propertyPath: OnPlayerMove.m_PersistentCalls.m_Calls.Array.size

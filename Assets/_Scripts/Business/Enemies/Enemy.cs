@@ -16,11 +16,15 @@ public abstract class Enemy : MonoBehaviour
     }
 
 
+    //Disable collider, spawn exp orb, play death animation
     public virtual void Die()
     {
         //todo animator.SetTrigger("Die");
         _col.enabled = false;
-        var expOrb = Instantiate(expOrbPrefab, transform.position, Quaternion.identity);
+        var expOrb = Instantiate(
+            expOrbPrefab,
+            transform.position + new Vector3(0, 0.5f, 0),
+            Quaternion.identity);
         expOrb.expValue = expValue;
     }
 }
