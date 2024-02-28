@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 9139090047589337932}
   - component: {fileID: 8991468746598825524}
   - component: {fileID: -1950552677759281645}
+  - component: {fileID: -7426921551740938661}
+  - component: {fileID: 6806404629087075961}
   m_Layer: 0
   m_Name: PlayerBullet
   m_TagString: Untagged
@@ -133,3 +135,45 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &-7426921551740938661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801741514359049753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 668353710a2496041bb2cd472f89d450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
+  tagToDamage: Enemy
+  onDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6806404629087075961}
+        m_TargetAssemblyTypeName: PlayerBullet, Assembly-CSharp
+        m_MethodName: ReturnBullet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6806404629087075961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801741514359049753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73e5d288bcf82d843b7b0f66222e53d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletLifeTime: 2.01

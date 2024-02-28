@@ -19,7 +19,7 @@ public static class Helpers
 
     #region WaitForSeconds
     //Every use of WaitForSeconds creates a new garbage for garbage collector to collect, so we are caching the WaitForSeconds.
-    private static readonly Dictionary<float, WaitForSeconds> WaitDictionary = new Dictionary<float, WaitForSeconds>();
+    private static readonly Dictionary<float, WaitForSeconds> WaitDictionary = new();
     public static WaitForSeconds GetWait(float time)
     {
         if (WaitDictionary.TryGetValue(time, out var wait)) return wait;
@@ -29,6 +29,8 @@ public static class Helpers
     }
     #endregion
 
+
+    #region Object Pooler
     //Object pooler method
     public static void MakePool(GameObject prefab, int poolSize, Transform parent, List<GameObject> poolList)
     {
@@ -39,5 +41,6 @@ public static class Helpers
             poolList.Add(obj);
         }
     }
+    #endregion
 
 }

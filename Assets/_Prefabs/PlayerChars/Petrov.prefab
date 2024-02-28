@@ -3215,9 +3215,10 @@ GameObject:
   - component: {fileID: 112633771443120207}
   - component: {fileID: 5992146035572183413}
   - component: {fileID: 6063422461550024257}
-  - component: {fileID: 7449104798737542392}
   - component: {fileID: 1720668375508984870}
   - component: {fileID: 6777323931359755166}
+  - component: {fileID: 7392768261139811911}
+  - component: {fileID: 7732687816575896617}
   m_Layer: 0
   m_Name: Petrov
   m_TagString: Untagged
@@ -3313,19 +3314,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!114 &7449104798737542392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4523217721945680630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a764583535ebda478425954dd41cbae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerCharacterSO: {fileID: 11400000, guid: 792cfc12a6de14a4d84182cbe8568774, type: 2}
 --- !u!114 &1720668375508984870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3352,7 +3340,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6afa8240792cab04d83ae44956ef680a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerCharacters: []
+--- !u!114 &7392768261139811911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4523217721945680630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b6346421bff2840adc6a5d55dd100e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7732687816575896617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4523217721945680630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f1c9860251f55849b1f68d88c6c57ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0
+  OnPlayerMove:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4634358862586369965
 GameObject:
   m_ObjectHideFlags: 0
