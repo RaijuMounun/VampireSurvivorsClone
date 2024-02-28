@@ -1,65 +1,30 @@
-using System.Collections;
 using UnityEngine;
 
-public class Pistol : Weapon, IWeapon
+[CreateAssetMenu(fileName = "Scriptable Objects", menuName = "New Pistol")]
+public class Pistol : SO_PlayerWeapons
 {
-    int maxAmmo, currentAmmo;
 
-    private void Start()
+
+    public override void Shoot()
     {
-        weaponM = WeaponManager.Instance;
-        maxAmmo = weaponSO.maxAmmo;
-        currentAmmo = weaponSO.currentAmmo;
-    }
+        if (!canFire) return;
+        if (isReloading) return;
 
-
-    public void Shoot()
-    {
-        if (reloading) return;
-        if (weaponM.playerBulletPool.Count == 0) return;
-
+        //pick bullet and increase counter
         var bullet = weaponM.playerBulletPool[weaponM.playerBulletPoolCounter];
         weaponM.playerBulletPoolCounter++;
-        if (weaponM.playerBulletPoolCounter == 30) weaponM.playerBulletPoolCounter = 0;
-        //return bullet
+        if (weaponM.playerBulletPoolCounter == weaponM.playerBulletPool.Count) weaponM.playerBulletPoolCounter = 0;
 
+        //set up and fire bullet
+        bullet.transform.SetParent(null);
         bullet.SetActive(true);
-        bullet.transform.SetPositionAndRotation(transform.position, transform.rotation);
-        bullet.GetComponent<Rigidbody>().velocity = transform.forward * weaponSO.bulletSpeed;
-        currentAmmo--;
-        BulletCanvas.Instance.UpdateBulletCount(currentAmmo, maxAmmo);
-        if (currentAmmo <= 0) StartCoroutine(Reload());
+        bullet.transform.SetPositionAndRotation(weapon.transform.position, weapon.transform.rotation);
+        bullet.GetComponent<Rigidbody>().velocity = weapon.transform.forward * bulletSpeed;
+
+        weapon.UpdateAmmoAndBulletText(this);
+
+        //cooldown
+        weapon.GetCooldown(1 / fireRate);
     }
 
-    #region ReturnBullet
-    public void ReturnBullet(GameObject bullet)
-    {
-        bullet.SetActive(false);
-        weaponM.playerBulletPool.Add(bullet);
-    }
-    public void ReturnBullet(GameObject bullet, float time)
-    {
-        StartCoroutine(ReturnBulletWithDelay(bullet, time));
-    }
-    private IEnumerator ReturnBulletWithDelay(GameObject bullet, float time)
-    {
-        yield return Helpers.GetWait(time);
-        ReturnBullet(bullet);
-    }
-    #endregion
-
-    public IEnumerator Reload()
-    {
-        reloading = true;
-        yield return Helpers.GetWait(weaponSO.reloadTime);
-        currentAmmo = maxAmmo;
-        BulletCanvas.Instance.UpdateBulletCount(currentAmmo, maxAmmo);
-        reloading = false;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, transform.forward * 10);
-    }
 }

@@ -3,27 +3,44 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public Transform playerMouse;
+    WeaponManager weaponM;
     public SO_PlayerWeapons weaponSO;
-    protected WeaponManager weaponM;
-    protected bool reloading;
+
+
     private void Start()
     {
-        playerMouse = PlayerMouse.Instance.transform;
         weaponM = WeaponManager.Instance;
+        weaponSO.weapon = this;
+        weaponSO.weaponM = weaponM;
+        weaponSO.canFire = true;
+        weaponSO.isReloading = false;
+        transform.parent = weaponM.player.transform;
+        BulletCanvas.Instance.UpdateBulletCount(weaponSO.currentAmmo, weaponSO.maxAmmo);
     }
-    private void Update() => transform.LookAt(playerMouse);
-    private void OnDrawGizmos()
+
+    public void Reload()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, transform.forward * 10);
+        if (!Input.GetKeyDown(KeyCode.R)) return;
+        StartCoroutine(weaponSO.Reload());
+    }
+
+
+    public void UpdateAmmoAndBulletText(SO_PlayerWeapons weapon)
+    {
+        weapon.currentAmmo--;
+        BulletCanvas.Instance.UpdateBulletCount(weapon.currentAmmo, weapon.maxAmmo);
+        if (weapon.currentAmmo <= 0) StartCoroutine(weapon.Reload());
+    }
+
+    public void GetCooldown(float time)
+    {
+        StartCoroutine(weaponSO.CoolDown(time));
     }
 }
 
-interface IWeapon
+public interface IWeapon
 {
     void Shoot();
-    void ReturnBullet(GameObject bullet);
-    void ReturnBullet(GameObject bullet, float time);
     IEnumerator Reload();
 }
+
