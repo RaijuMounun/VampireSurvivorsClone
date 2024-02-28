@@ -36,7 +36,7 @@ public class BasicAttacker : MonoBehaviour
     void Attack(GameObject objectToDamage)
     {
         if (!objectToDamage.TryGetComponent(out Damageable damageableObject)) return;
-        damageableObject.DealDamage(-damage);
+        damageableObject.DealDamage(damage);
     }
     IEnumerator AttackCooldown()
     {
